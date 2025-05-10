@@ -1,0 +1,15 @@
+artifact_uri: file:///home/runner/work/LifeExpectancy/LifeExpectancy/mlruns/0/58c0a2e3b13340889560b96835e51c87/artifacts
+end_time: 1746856027913
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 58c0a2e3b13340889560b96835e51c87
+run_name: suave-bug-328
+run_uuid: 58c0a2e3b13340889560b96835e51c87
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746856023888
+status: 3
+tags: []
+user_id: runner
