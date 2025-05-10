@@ -1,4 +1,4 @@
-data_path: "data/life_expectancy.csv"
+data_path: "data/Life_Expectancy_Data.csv"
 target_column: "Life expectancy "
 test_size: 0.2
 random_state: 42

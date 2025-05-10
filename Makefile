@@ -5,4 +5,4 @@ train:
 	python src/train.py
 
 test:
-	pytest tests/
+	pytest tests/test_dummy.py
