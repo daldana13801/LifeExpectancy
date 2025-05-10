@@ -1,0 +1,15 @@
+artifact_uri: file:///home/runner/work/LifeExpectancy/LifeExpectancy/mlruns/0/aa659af617584eb99b58fabf2e797c2b/artifacts
+end_time: 1746856495638
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: aa659af617584eb99b58fabf2e797c2b
+run_name: whimsical-conch-288
+run_uuid: aa659af617584eb99b58fabf2e797c2b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746856491647
+status: 3
+tags: []
+user_id: runner
