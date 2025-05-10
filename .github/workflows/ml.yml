@@ -64,3 +64,14 @@ jobs:
 
       - name: 🚀 Empujar cambios a main
         run: git push origin main
+
+      - name: 📄 Guardar métricas en archivo
+        run: |
+          python scripts/export_metrics.py  # Este script extrae métricas del experimento
+          cat metrics.json
+
+      - name: 📤 Subir métricas como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+         name: metrics
+         path: metrics.json
