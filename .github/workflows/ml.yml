@@ -1,0 +1,66 @@
+name: CI/CD para ML con MLflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ml_pipeline:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.4'
+
+      - name: 📦 Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: ✅ Ejecutar pruebas
+        run: make test
+
+      - name: 🧪 Entrenar modelo
+        run: make train
+
+      - name: 📤 Subir carpeta mlruns como artefacto
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlruns
+          path: mlruns/
+
+      # --- Control de cambios en mlruns (opcional si quieres guardar en el repo) ---
+      - name: ⚙️ Configurar Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: ✨ Verificar si mlruns existe
+        run: |
+          if [ -d "mlruns" ]; then
+            echo "La carpeta mlruns existe."
+          else
+            echo "La carpeta mlruns no existe. Creando la carpeta mlruns."
+            mkdir mlruns
+          fi
+
+      - name: ✨ Añadir cambios en mlruns
+        run: git add mlruns
+
+      - name: 📝 Confirmar cambios en mlruns (si existen)
+        run: |
+          git diff --staged --quiet || git commit -m "Actualizar mlruns con resultados de ejecución [skip ci]"
+
+      - name: 🚀 Empujar cambios a main
+        run: git push origin main
